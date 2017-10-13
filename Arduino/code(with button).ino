@@ -12,8 +12,9 @@ const int sensorPinINDEX = A1;    // pin that the INDEX flex sensor is attached 
 const int sensorPinMIDDLE = A2;    // pin that the MIDDLE flex sensor is attached to
 const int sensorPinRING = A3;    // pin that the RING flex sensor is attached to
 const int sensorPinPINKEY = A4;    // pin that the PINKEY flex sensor is attached to
-const int xPin = 2;		// X output of the accelerometer
-const int yPin = 3;		// y output of the accelerometer
+const int xPin = 2;    // X output of the accelerometer
+const int yPin = 3;   // y output of the accelerometer
+const int button = 7;
 
 
 const int ledPinBLUE = 4;        // pin that the LED is attached to
@@ -48,6 +49,7 @@ void setup() {
   pinMode(18, OUTPUT);
   pinMode(xPin, INPUT);
   pinMode(yPin, INPUT);
+  pinMode(button, INPUT);
   
   digitalWrite(ledPinBLUE, HIGH);
   
@@ -152,7 +154,17 @@ void setup() {
   delay (1000);
 }
 
-void loop() {
+void loop()
+{
+   int switchstate = digitalRead(button);
+    if (switchstate == HIGH) 
+    {
+      clickEvent();
+    } 
+ }
+
+void clickEvent() 
+{
   
   // variables to read the pulse widths:
   int pulseX, pulseY;
@@ -357,10 +369,7 @@ void loop() {
   else {
    
   }
-  
-  
-  delay (1000);
-  
    
+  delay (1000);   
 
 }
